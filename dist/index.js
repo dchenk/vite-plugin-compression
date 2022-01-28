@@ -1,6 +1,6 @@
 import path from 'path';
 import { normalizePath } from 'vite';
-import { readAllFile, isRegExp, isFunction } from './utils';
+import { readAllFile, isRegExp, isFunction } from './utils.js';
 import fs from 'fs-extra';
 import chalk from 'chalk';
 import zlib from 'zlib';
