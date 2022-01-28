@@ -63,7 +63,7 @@ export default function (options = {}) {
                 await fs.writeFile(cname, content);
                 mtimeCache.set(filePath, Date.now());
             });
-            Promise.all(handles).then(() => {
+            return Promise.all(handles).then(() => {
                 if (verbose) {
                     handleOutputLogger(config, compressMap, algorithm);
                     success();
