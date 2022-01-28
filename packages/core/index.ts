@@ -100,7 +100,7 @@ export default function (options: VitePluginCompression = {}): Plugin {
         mtimeCache.set(filePath, Date.now())
       })
 
-      Promise.all(handles).then(() => {
+      return Promise.all(handles).then(() => {
         if (verbose) {
           handleOutputLogger(config, compressMap, algorithm)
           success()
