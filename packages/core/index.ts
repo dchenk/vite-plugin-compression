@@ -6,9 +6,6 @@ import { readAllFile, isRegExp, isFunction } from './utils'
 import fs from 'fs-extra'
 import chalk from 'chalk'
 import zlib from 'zlib'
-import { debug as Debug } from 'debug'
-
-const debug = Debug('vite-plugin-compression')
 
 const extRE = /\.(js|mjs|json|css|html)$/i
 
@@ -48,8 +45,6 @@ export default function (options: VitePluginCompression = {}): Plugin {
     return emptyPlugin
   }
 
-  debug('plugin options:', options)
-
   return {
     ...emptyPlugin,
     apply: 'build',
@@ -59,12 +54,9 @@ export default function (options: VitePluginCompression = {}): Plugin {
       outputPath = path.isAbsolute(config.build.outDir)
         ? config.build.outDir
         : path.join(config.root, config.build.outDir)
-      debug('resolvedConfig:', resolvedConfig)
     },
     async closeBundle() {
       let files = readAllFile(outputPath) || []
-      debug('files:', files)
-
       if (!files.length) return
 
       files = filterFiles(files, filter)
